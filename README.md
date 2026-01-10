@@ -23,11 +23,29 @@ To run the full suite in parallel:
 
 `npm test`
 
+**Linting & Formatting**
+
+To check for linting errors:
+
+`npm run lint`
+
+To format the code:
+
+`npm run format`
+
 **Viewing Reports**
 
 Playwright generates an HTML report after execution. To view it:
 
 `npm run report`
+
+## 🤖 CI/CD
+
+This project uses **GitHub Actions** for Continuous Integration. The workflow is defined in `.github/workflows/ci.yml` and performs the following checks on every push and pull request to the main branch:
+
+1.  **Linting**: Runs ESLint to ensure code quality and consistency.
+2.  **Testing**: Executes the Playwright test suite.
+3.  **Reporting**: Uploads the Playwright test report as an artifact for easy debugging of failures.
 
 ## 🏗 Design Decisions & Trade-offs
 
