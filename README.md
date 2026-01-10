@@ -1,21 +1,21 @@
 # Products API Test Suite
+
 This repository contains an automated API test suite for the [DummyJSON Products API](https://dummyjson.com/docs/products), built using Playwright and TypeScript.
 
 ## 🚀 Getting Started
 
 **Prerequisites**
 
-* Node.js (v16 or higher)
-* npm
+- Node.js (v16 or higher)
+- npm
 
 **Installation**
 
-* Clone the repository.
-* Install dependencies:
+- Clone the repository.
+- Install dependencies:
 
 `npm install
 `
-
 
 **Running Tests**
 
@@ -23,9 +23,16 @@ To run the full suite in parallel:
 
 `npm test`
 
-
 **Viewing Reports**
 
 Playwright generates an HTML report after execution. To view it:
 
 `npm run report`
+
+## 🏗 Design Decisions & Trade-offs
+
+To ensure the test suite is maintainable and scalable, I implemented the Controller pattern. Instead of embedding raw HTTP requests directly into the test files, I abstracted the API interactions into a dedicated `ProductsController` class. This separation of concerns means that if endpoint paths or HTTP methods change in the future, updates are centralized in one file rather than scattered across the entire suite. Additionally, I chose TypeScript to enforce strict typing on API responses. By defining interfaces for the Product models, the suite prevents common runtime errors and improves the developer experience through autocomplete and compile-time checks.
+
+Reliability and speed were key considerations for the configuration. I enabled fully parallel execution in Playwright, which significantly reduces the total feedback time. Since the DummyJSON API is a mock service that does not persist state between requests, running tests concurrently is safe and efficient. I also utilized soft assertions for validating complex JSON responses. This approach allows the test to verify multiple fields (like ID, title, and price) and report all failures found in a single run, rather than stopping immediately at the first error, providing a more complete picture of the API's health.
+
+Regarding trade-offs, I prioritized a lightweight implementation over exhaustive strictness for this assignment. In a production environment, I would integrate a schema validation library like Zod or AJV to rigorously validate the entire JSON contract at runtime. For this scope, I relied on TypeScript interfaces and Playwright assertions to balance speed with sufficient coverage. Furthermore, because the System Under Test (SUT) does not actually persist data (writes are faked), I mostly used hardcoded IDs for retrieval tests. In a real-world scenario with a persistent database, I would implement dynamic data seeding (creating a product in a `beforeAll` hook and deleting created data in a `afterAll` hook) to ensure true test isolation.

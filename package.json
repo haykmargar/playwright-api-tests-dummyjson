@@ -11,11 +11,21 @@
   "author": "Hayk Margaryan",
   "scripts": {
     "test": "npx playwright test",
-    "report": "npx playwright show-report"
+    "report": "npx playwright show-report",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write ."
   },
   "devDependencies": {
+    "@eslint/eslintrc": "^3.1.0",
     "@playwright/test": "^1.57.0",
     "@types/node": "^20.10.0",
+    "@typescript-eslint/eslint-plugin": "^8.52.0",
+    "@typescript-eslint/parser": "^8.52.0",
+    "eslint": "^9.39.2",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-playwright": "^2.4.1",
+    "prettier": "^3.7.4",
     "typescript": "^5.3.0"
   }
 }
