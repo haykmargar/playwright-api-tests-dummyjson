@@ -1,0 +1,21 @@
+{
+  "name": "dummyjson-api-taf",
+  "version": "1.0.0",
+  "description": "API test suite in TypeScript using Playwright to validate Products endpoints in DummyJSON.",
+  "homepage": "https://github.com/haykmargar/playwright-api-tests-dummyjson#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/haykmargar/playwright-api-tests-dummyjson.git"
+  },
+  "license": "ISC",
+  "author": "Hayk Margaryan",
+  "scripts": {
+    "test": "npx playwright test",
+    "report": "npx playwright show-report"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.57.0",
+    "@types/node": "^20.10.0",
+    "typescript": "^5.3.0"
+  }
+}
