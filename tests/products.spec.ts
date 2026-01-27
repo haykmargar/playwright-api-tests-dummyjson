@@ -164,6 +164,7 @@ test.describe('DummyJSON Products API', () => {
     });
 
     test('should handle invalid ID format (String instead of Number)', async () => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const response = await api.getProductById('invalid-id' as any);
 
       expect(response.status()).toBe(HttpStatus.NOT_FOUND);
@@ -187,6 +188,7 @@ test.describe('DummyJSON Products API', () => {
         price: 'This should be a number'
       };
 
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const response = await api.updateProduct(1, invalidPayload as any);
 
       expect(response.status()).toBe(HttpStatus.BAD_REQUEST);
