@@ -1,4 +1,13 @@
 import { defineConfig } from '@playwright/test';
+import dotenv from 'dotenv';
+import path from 'path';
+
+dotenv.config({ path: path.resolve(__dirname, '.env'), quiet: true });
+
+if (!process.env.BASE_URL) {
+  console.error('BASE_URL is not defined.');
+  process.exit(1);
+}
 
 export default defineConfig({
   testDir: './tests',
@@ -22,7 +31,7 @@ export default defineConfig({
   reporter: [['html'], ['list', { printSteps: true }]],
   use: {
     /* Base URL to share across the framework */
-    baseURL: 'https://dummyjson.com',
+    baseURL: process.env.BASE_URL,
     /* Collect trace when retrying the failed test. */
     trace: 'on-first-retry',
     /* Add custom headers if needed */
