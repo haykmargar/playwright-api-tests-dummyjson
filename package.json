@@ -11,6 +11,9 @@
   "author": "Hayk Margaryan",
   "scripts": {
     "test": "npx playwright test",
+    "test:smoke": "npx playwright test --grep '@smoke'",
+    "test:positive": "npx playwright test --grep '@positive'",
+    "test:negative": "npx playwright test --grep '@negative'",
     "report": "npx playwright show-report",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
@@ -22,10 +25,12 @@
     "@types/node": "^20.10.0",
     "@typescript-eslint/eslint-plugin": "^8.52.0",
     "@typescript-eslint/parser": "^8.52.0",
+    "dotenv": "^17.2.3",
     "eslint": "^9.39.2",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-playwright": "^2.4.1",
     "prettier": "^3.7.4",
-    "typescript": "^5.3.0"
+    "typescript": "^5.3.0",
+    "zod": "^4.3.6"
   }
 }

@@ -29,7 +29,11 @@ To check for linting errors:
 
 `npm run lint`
 
-To format the code:
+To automatically fix linting errors:
+
+`npm run lint:fix`
+
+To format the code using Prettier:
 
 `npm run format`
 
@@ -38,6 +42,12 @@ To format the code:
 Playwright generates an HTML report after execution. To view it:
 
 `npm run report`
+
+## ⚙️ Configuration
+
+### Environment Variables
+
+This project uses `dotenv` to manage environment variables. Create an `.env` file in the project root to store sensitive information or configuration specific to your local environment. An `EXAMPLE.env` file is provided as a template.
 
 ## 🤖 CI/CD
 
@@ -49,7 +59,9 @@ This project uses **GitHub Actions** for Continuous Integration. The workflow is
 
 ## 🏗 Design Decisions & Trade-offs
 
-To ensure the test suite is maintainable and scalable, I implemented the Controller pattern. Instead of embedding raw HTTP requests directly into the test files, I abstracted the API interactions into a dedicated `ProductsController` class. This separation of concerns means that if endpoint paths or HTTP methods change in the future, updates are centralized in one file rather than scattered across the entire suite. Additionally, I chose TypeScript to enforce strict typing on API responses. By defining interfaces for the Product models, the suite prevents common runtime errors and improves the developer experience through autocomplete and compile-time checks.
+To ensure the test suite is maintainable and scalable, I implemented the Controller pattern. Instead of embedding raw HTTP requests directly into the test files, I abstracted the API interactions into a dedicated `ProductsController` class. This separation of concerns means that if endpoint paths or HTTP methods change in the future, updates are centralized in one file rather than scattered across the entire suite. Additionally, I chose TypeScript to enforce strict typing on API responses.
+
+**Schema Validation with Zod**: To further enhance type safety and ensure API contract adherence, `Zod` is integrated for runtime schema validation of API responses. This helps catch unexpected response structures and data type mismatches early in the testing cycle.
 
 Reliability and speed were key considerations for the configuration. I enabled fully parallel execution in Playwright, which significantly reduces the total feedback time. Since the DummyJSON API is a mock service that does not persist state between requests, running tests concurrently is safe and efficient. I also utilized soft assertions for validating complex JSON responses. This approach allows the test to verify multiple fields (like ID, title, and price) and report all failures found in a single run, rather than stopping immediately at the first error, providing a more complete picture of the API's health.
 
