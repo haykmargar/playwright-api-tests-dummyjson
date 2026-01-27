@@ -26,6 +26,10 @@ jobs:
       - name: Run ESLint
         run: npm run lint
 
+      - name: Create .env file
+        run: |
+          echo "BASE_URL=https://dummyjson.com" > .env
+
       - name: Run Playwright tests
         run: npm test
 
