@@ -28,7 +28,7 @@ export default defineConfig({
   /* Opt out of parallel tests on CI if the API has rate limits (DummyJSON is lenient). */
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: [['html'], ['list', { printSteps: true }]],
+  reporter: [['html', { outputFolder: 'playwright-report' }], ['list', { printSteps: true }]],
   use: {
     /* Base URL to share across the framework */
     baseURL: process.env.BASE_URL,
